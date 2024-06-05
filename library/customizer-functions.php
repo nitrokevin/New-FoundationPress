@@ -323,8 +323,8 @@ new \Kirki\Field\URL(
 );
 new \Kirki\Field\Checkbox_Switch(
 	[
-		'settings'    => 'social-twitter',
-		'label'       => esc_html__( 'Twitter', 'avidd'  ),
+		'settings'    => 'social-x',
+		'label'       => esc_html__( 'X', 'avidd'  ),
 		'description' => esc_html__( '', 'avidd' ),
 		'section'     => 'social_media_section',
 		'default'     => 'off',
@@ -337,14 +337,14 @@ new \Kirki\Field\Checkbox_Switch(
 
 new \Kirki\Field\URL(
 	[
-		'settings' => 'social-twitter-url',
-		'label'    => esc_html__( 'Twitter URL', 'avidd' ),
+		'settings' => 'social-x-url',
+		'label'    => esc_html__( 'X URL', 'avidd' ),
 		'section'  => 'social_media_section',
-		'default'  => 'https://twitter.com/',
+		'default'  => 'https://x.com/',
 		'priority' => 10,
 		'active_callback'  => [
 			[
-				'setting'  => 'social-twitter',
+				'setting'  => 'social-x',
 				'operator' => '===',
 				'value'    => true,
 			],

@@ -2313,7 +2313,14 @@ if (function_exists('acf_add_options_page')) {
 }
 
 
+add_action('admin_head', 'gutenberg_sidebar');
 
+function gutenberg_sidebar() {
+  echo 
+  '<style>
+    .edit-post-sidebar {width: 400px;}
+  </style>';
+}
 add_action('acf/input/admin_head', 'my_acf_admin_head5');
 function my_acf_admin_head5()
 {

@@ -12,6 +12,8 @@ function img_unautop($pee) {
     return $pee;
 }
 add_filter( 'acf_the_content', 'img_unautop', 30 );
+
+
 	// REMOVE P TAG FROM Buttons
   function a_unautop($aa) {
     $aa = preg_replace('/<p>\\s*?(<a .*?><a.*?><\\/a>|<a.*?>)?\\s*<\\/p>/s', '$1', $aa);

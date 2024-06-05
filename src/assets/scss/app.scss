@@ -16,7 +16,7 @@
 @include foundation-forms;
 // @include foundation-range-input;
 @include foundation-accordion;
-@include foundation-accordion-menu;
+// @include foundation-accordion-menu;
 // @include foundation-badge;
 // @include foundation-breadcrumbs;
 @include foundation-button-group;
@@ -35,7 +35,7 @@
 // @include foundation-orbit;
 @include foundation-pagination;
 // @include foundation-progress-bar;
-@include foundation-slider;
+// @include foundation-slider;
 @include foundation-sticky;
 // @include foundation-reveal;
 @include foundation-switch;
@@ -83,8 +83,7 @@
 @import "components/carousel";
 @import "components/tab";
 @import "components/accordion";
-@import "components/flexible-article";
-@import "components/flexible-grid";
+
 
 // Templates
 @import "templates/front";

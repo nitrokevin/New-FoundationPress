@@ -43,7 +43,7 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 		wp_deregister_script( 'jquery' );
 
 		// CDN hosted jQuery placed in the header, as some plugins require that jQuery is loaded in the header.
-		wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', false );
+		wp_enqueue_script( 'jquery', '//code.jquery.com/jquery-3.7.1.min.js', array(), '3.7.1', false );
 
 		// Deregister the jquery-migrate version bundled with WordPress.
 		wp_deregister_script( 'jquery-migrate' );

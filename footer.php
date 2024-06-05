@@ -54,9 +54,9 @@ $xlarge = wp_get_attachment_image_url( $footer_background_image, 'fp-xlarge' );
 							<i class="fab fa-facebook-f fa-fw"></i>
 						</a></li>
 				<?php endif; ?>
-				<?php if (get_theme_mod('social-twitter')) : ?>
-					<li><a href="<?php echo esc_url(get_theme_mod('social-twitter-url')); ?>" rel="noreferrer" target="_blank" aria-label="Twitter">
-							<i class="fab fa-twitter fa-fw"></i>
+						<?php if (get_theme_mod('social-x')) : ?>
+					<li><a href="<?php echo esc_url(get_theme_mod('social-x-url')); ?>" rel="noreferrer" target="_blank" aria-label="X">
+							<i class="fab fa-x-twitter fa-fw"></i>
 						</a></li>
 				<?php endif; ?>
 				<?php if (get_theme_mod('social-instagram')) : ?>
