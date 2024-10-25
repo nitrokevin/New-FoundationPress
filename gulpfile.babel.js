@@ -15,7 +15,7 @@ import colors from "ansi-colors";
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 
-const sass = require('gulp-sass')(require('sass'));
+const sass = gulpSass(dartSass);
 // Load all Gulp plugins into one variable
 const $ = plugins();
 
@@ -93,9 +93,10 @@ function styles() {
     gulp.src(['src/assets/scss/app.scss', 'src/assets/scss/editor.scss'])
     .pipe($.sourcemaps.init())
     .pipe(
-      sass({
+      sass
+      .sync({
         includePaths: PATHS.sass,
-      }).on("error", sass.logError)
+      }).on("error", sass.logError),
     )
     .pipe($.autoprefixer())
 
