@@ -71,7 +71,7 @@ $global-font-size: 100%;
 $global-width: rem-calc(1260);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #24382C,
+  primary: #1f1f1f,
   secondary: #E1C789,
   success: #3adb76,
   warning: #ffae00,
@@ -95,7 +95,11 @@ $black: #0a0a0a;
 $white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: 'Nunito Sans', Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: 'Montserrat',
+Helvetica,
+Roboto,
+Arial,
+sans-serif;
 $body-safe-padding: false;
 $body-antialiased: true;
 $global-margin: 1rem;

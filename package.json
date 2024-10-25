@@ -21,11 +21,11 @@
     "responsive"
   ],
   "dependencies": {
+    "@splidejs/splide": "^4.1.4",
     "foundation-sites": "6.8.1",
     "jquery": "^3.7.1",
-    "motion-ui": "^2.0.3",
-    "what-input": "^5.2.12",
-    "@splidejs/splide": "^4.1.4"
+    "motion-ui": "^2.0.8",
+    "what-input": "^5.2.12"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",

@@ -1,6 +1,6 @@
 <?php
 // Sets colors for use in ACF and Gutenberg
-$primary_color = '#24382C';
+$primary_color = '#1f1f1f';
 $secondary_color = '#E1C789';
 $light_gray = '#e6e6e6';
 $medium_gray = '#cacaca';

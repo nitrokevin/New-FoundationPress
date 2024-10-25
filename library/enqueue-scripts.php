@@ -38,7 +38,7 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 
 		// Enqueue the main Stylesheet.
 		wp_enqueue_style( 'main-stylesheet', get_stylesheet_directory_uri() . '/dist/assets/css/' . foundationpress_asset_path( 'app.css' ), array(), '1.0.0', 'all' );
-		wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Nunito+Sans:300,600&display=fallback', array(), '2.10.4', 'all' );
+		wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=fallback', array(), '2.10.4', 'all' );
 		// Deregister the jquery version bundled with WordPress.
 		wp_deregister_script( 'jquery' );
 
