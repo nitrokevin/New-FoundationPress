@@ -111,7 +111,7 @@ new \Kirki\Field\Color_Palette(
 		],
     'output'      => [
       array(
-        'element'  => '.top-bar, .desktop-menu a, .mobile-menu a, #mega-menu-wrap-top-bar-r #mega-menu-top-bar-r > li.mega-menu-item > a.mega-menu-link',
+        'element'  => '.top-bar, .desktop-menu a, .mobile-menu a',
             'property' => 'color'
       ),
   ]
