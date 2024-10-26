@@ -9,6 +9,7 @@
 @import 'settings';
 
 @import "global/blocks";
+@import "global/colors";
 @import "components/accordion";
 
 
@@ -91,4 +92,46 @@ body {
 /** === Latest Posts grid view === */
 .wp-block-latest-posts.is-grid{
 	list-style: none;
+}
+
+
+.wp-block-acf-carousel {
+  .splide__list {
+    display: flex;
+
+    h1 {
+      font-size: 1rem;
+    }
+
+    img {
+      min-width: 6rem;
+      max-width: 6rem;
+    }
+  }
+}
+
+
+.interface-interface-skeleton__secondary-sidebar,
+.interface-interface-skeleton__sidebar {
+  width: 30% !important;
+}
+
+.editor-sidebar {
+  width: 100%;
+}
+  .edit-post-sidebar {
+    width: 30% !important;
+  }
+ul.acf-swatch-list.acf-hl>li {
+  margin-right: .1rem;
+
+}
+
+ul.acf-swatch-list label {
+  font-size: 0;
+}
+
+ul.acf-swatch-list .swatch-toggle {
+  border-radius: 50%;
+  border: 1px solid #aaaaaa;
 }

@@ -498,7 +498,7 @@ acf_add_local_field_group(array(
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '33',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
@@ -523,7 +523,7 @@ acf_add_local_field_group(array(
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '50',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
@@ -572,7 +572,7 @@ acf_add_local_field_group(array(
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
-                        'width' => '50',
+                        'width' => '',
                         'class' => '',
                         'id' => '',
                     ),
@@ -591,7 +591,7 @@ acf_add_local_field_group(array(
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
-                        'width' => '40',
+                        'width' => '',
                         'class' => '',
                         'id' => '',
                     ),
@@ -660,7 +660,7 @@ acf_add_local_field_group(array(
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                    'width' => '33',
+                    'width' => '',
                     'class' => '',
                     'id' => '',
                 ),
@@ -681,7 +681,7 @@ acf_add_local_field_group(array(
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
-                    'width' => '25',
+                    'width' => '',
                     'class' => '',
                     'id' => '',
                 ),
@@ -721,7 +721,7 @@ acf_add_local_field_group(array(
                         'required' => 0,
                         'conditional_logic' => 0,
                         'wrapper' => array(
-                            'width' => '40',
+                            'width' => '',
                             'class' => '',
                             'id' => '',
                         ),
@@ -740,7 +740,7 @@ acf_add_local_field_group(array(
                         'required' => 0,
                         'conditional_logic' => 0,
                         'wrapper' => array(
-                            'width' => '40',
+                            'width' => '',
                             'class' => '',
                             'id' => '',
                         ),
@@ -807,7 +807,7 @@ acf_add_local_field_group(array(
     'required' => 0,
     'conditional_logic' => 0,
     'wrapper' => array(
-        'width' => '25',
+        'width' => '100',
         'class' => '',
         'id' => '',
     ),
@@ -857,7 +857,7 @@ acf_add_local_field_group(array(
     'required' => 0,
     'conditional_logic' => 0,
     'wrapper' => array(
-        'width' => '33',
+        'width' => '',
         'class' => '',
         'id' => '',
     ),
@@ -935,7 +935,7 @@ acf_add_local_field_group(array(
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '25',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
@@ -1013,7 +1013,7 @@ acf_add_local_field_group(array(
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '33',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
@@ -1037,7 +1037,7 @@ acf_add_local_field_group(array(
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '33',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
@@ -1056,7 +1056,7 @@ acf_add_local_field_group(array(
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '33',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
