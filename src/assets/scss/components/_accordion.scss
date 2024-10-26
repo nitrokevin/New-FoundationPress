@@ -1,28 +1,3 @@
-.acf-accordion{
-	.acf-accordion-container {
-		@include xy-grid-container;
-		&.alignfull{
-			.acf-accordion-grid{
-		  margin-left: calc( -50vw + 50% );
-		  margin-right: calc( -50vw  + 50%  );
-		  max-width: 100vw;
-			}
-	
-		  .acf-accordion-content{
-			@include xy-cell(12, $gutters:0);
-		}
-		}
-		.acf-accordion-grid{
-			@include xy-grid;
-			.section-header{
-				@include xy-cell(12);
-			}
-			.acf-accordion-content{
-				@include xy-cell(12);
-			}
-		}
-	}
-}
 .block-accordion{
 	margin-left: calc( -50vw + 50% );
 	margin-right: calc( -50vw  + 50%  );

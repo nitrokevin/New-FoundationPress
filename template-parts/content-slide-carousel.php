@@ -22,7 +22,7 @@
 					};
 
 					?>
-			<li class="splide__slide">
+			<li class="splide__slide <?php echo $carousel_background_color ?>">
 			<?php if($carousel_image){ ?><div class="image" data-interchange="[<?php echo $small; ?>, small], [<?php echo $medium; ?>, medium], [<?php echo $large; ?>, large]" ></div><?php } ?>
 			
 				<h3><?php echo $carousel_heading ?></h3>

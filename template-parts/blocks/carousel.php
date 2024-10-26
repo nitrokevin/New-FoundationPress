@@ -25,29 +25,23 @@ if( !empty($block['align']) ) {
 }
 $carousel_type = get_field('carousel_type');
 $section_background = get_field('section_background');
-$section_heading = get_field('section_heading');
-$section_heading_color = get_field('section_heading_color');
-$section_background_image = get_field('section_background_image');
-if($section_background_image) {; 
-$small = $section_background_image['sizes']['fp-small'];
-$medium = $section_background_image['sizes']['fp-medium'];
-$large = $section_background_image['sizes']['fp-large'];
-};
-?>
-<section id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?> carousel-container <?php echo $carousel_type; ?>   <?php echo $section_background; ?> " >
-	
-	<div class="carousel-grid" >
-		<h3 class="<?php echo $section_heading_color; ?> carousel-header"><?php echo $section_heading; ?></h3>
-	<?php if($carousel_type == 'people-carousel'){
-		 get_template_part('template-parts/content', 'peoplecarousel'); 
-		 } if($carousel_type == 'slidecarousel'){ 
-			 get_template_part('template-parts/content', 'slidecarousel'); 
 
-		 } if($carousel_type == 'gallerycarousel'){ 
+?>
+<section id="<?php echo esc_attr($id); ?>" class="wp-block <?php echo esc_attr($className); ?>  <?php echo $carousel_type; ?>   <?php echo $section_background; ?> " >
+    <div class="block-carousel-container "> 
+		<div class="block-carousel-grid" >
+			<div class="block-carousel-content" >
+		
+	<?php if($carousel_type == 'people-carousel'){
+		 get_template_part('template-parts/content', 'people-carousel'); 
+		 } if($carousel_type == 'slide-carousel'){ 
+			 get_template_part('template-parts/content', 'slide-carousel'); 
+
+		 } if($carousel_type == 'gallery-carousel'){ 
 			
-			get_template_part('template-parts/content', 'gallerycarousel'); 
+			get_template_part('template-parts/content', 'gallery-carousel'); 
 
 		} ?>
+			</div>
 	</div>
-
 </section>

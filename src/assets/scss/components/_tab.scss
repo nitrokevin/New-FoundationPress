@@ -1,23 +1,4 @@
-.acf-tab{
-	.acf-tab-container {
-		@include xy-grid-container;
-		&.alignfull{
-		  margin-left: calc( -50vw + 50% );
-		  margin-right: calc( -50vw  + 50%  );
-		  max-width: 100vw;
-		  width:100%;
-		  padding-left: 0;
-		  padding-right: 0;
-		}
-		.acf-tab-grid{
-			@include xy-grid;
-			.acf-tab-content{
-				@include xy-cell(12);
-				
-			}
-		}
-	}
-}
+
 .block-tab{
 	margin-left: calc( -50vw + 50% );
 	margin-right: calc( -50vw  + 50%  );
@@ -33,39 +14,45 @@
 	}
 	.block-tab-container {
 		@include xy-grid-container;
+			.block-tab-grid {
+			  @include xy-grid;
 		.block-tab-content{
 			@include xy-cell(12);
 		
 	
 		}
+		}
 	}
 
 }
-.tabs{
+.tabs,
+.tabs-content{
 	@each $color, $code in $foundation-palette {
 
 		
+	&.#{$color} {
+		background:$code;
+	}
 	.#{$color} {
-	 a {
+	  a {
 
-		color:color-pick-contrast($code, $colors: ($white, $black, $primary-color, $secondary-color), $tolerance: $global-color-pick-contrast-tolerance);
-	  background:$code;
-	  &:hover {
-		background: scale-color( $code, $lightness: 20%) ;
-		color:color-pick-contrast($code, $colors: ($white, $black, $primary-color, $secondary-color), $tolerance: $global-color-pick-contrast-tolerance);
+	    color: color-pick-contrast($code, $colors: ($white, $black, $primary-color, $secondary-color), $tolerance: $global-color-pick-contrast-tolerance);
+	    background: $code;
+
+	    &:hover {
+	      background: scale-color($code, $lightness: 20%);
+	      color: color-pick-contrast($code, $colors: ($white, $black, $primary-color, $secondary-color), $tolerance: $global-color-pick-contrast-tolerance);
+	    }
+
+	    &:focus,
+	    &[aria-selected='true'] {
+	      background: scale-color($code, $lightness: 20%);
+	      color: color-pick-contrast($code, $colors: ($white, $black, $primary-color, $secondary-color), $tolerance: $global-color-pick-contrast-tolerance);
+	    }
 	  }
-  
-	  &:focus,
-	  &[aria-selected='true'] {
-		background: scale-color( $code, $lightness: 20%) ;
-		color:color-pick-contrast($code, $colors: ($white, $black, $primary-color, $secondary-color), $tolerance: $global-color-pick-contrast-tolerance);
-	  }
-	}
-	
+
 	}
 }
 
-.tabs-content{
 
-}
 }

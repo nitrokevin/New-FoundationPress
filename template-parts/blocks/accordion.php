@@ -25,7 +25,7 @@ if( !empty($block['align']) ) {
 }
 
 ?>
-<section id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>  <?php echo $section_background_color; ?> " >
+<section id="<?php echo esc_attr($id); ?>" class="wp-block <?php echo esc_attr($className); ?>  <?php echo $section_background_color; ?> " >
     <div class="block-accordion-container "> 
 		<div class="block-accordion-grid" >
 		<div class="block-accordion-content " >

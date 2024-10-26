@@ -11,6 +11,10 @@
 @import "global/blocks";
 @import "global/colors";
 @import "components/accordion";
+@import "components/tab";
+@import "components/carousel";
+
+
 
 
 @include foundation-typography;
@@ -24,6 +28,9 @@
   }
 
 /** === Content Width === */
+
+
+
 // .wp-block {
 // 	width: calc(100vw - (2 * 10px));
 // 	@each $breakpoint, $size in $grid-margin-gutters {

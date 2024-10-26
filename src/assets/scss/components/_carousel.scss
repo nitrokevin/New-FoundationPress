@@ -1,21 +1,32 @@
-.acf-carousel{
-	.acf-carousel-container{
-		@include xy-grid-container;
-		&.alignfull{
-		  margin-left: calc( -50vw + 50% );
-		  margin-right: calc( -50vw  + 50%  );
-		  max-width: 100vw;
-		  width:100%;
-		  padding-left: 0;
-		  padding-right: 0;
-		}
-		.acf-carousel-grid{
-			@include xy-grid;
-			.acf-carousel-content{
-				@include xy-cell(12);
-			}
-		}
-	}
+
+.block-carousel {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  max-width: 100vw;
+  padding-left: 0;
+  padding-right: 0;
+
+  &.alignfull {
+    .block-carousel-grid {
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      max-width: 100vw;
+    }
+  }
+
+  .block-carousel-container {
+    @include xy-grid-container;
+ .block-carousel-grid {
+	@include xy-grid;
+    .block-carousel-content {
+      @include xy-cell(12);
+
+
+    }
+}
+
+  }
+
 }
 
 .gallery-carousel{

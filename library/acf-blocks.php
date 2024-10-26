@@ -674,8 +674,8 @@ acf_add_local_field_group(array(
             ),
         array(
                 'key' => 'field_626da7410655fg',
-                'label' => 'Tab Background Colour',
-                'name' => 'tab_background_color',
+                'label' => 'Tab Bar Background Colour',
+                'name' => 'tab_bar_background_color',
                 'type' => 'swatch',
                 'instructions' => '',
                 'required' => 0,
@@ -813,13 +813,13 @@ acf_add_local_field_group(array(
     ),
     'choices' => array(
         'people-carousel' => 'People carousel',
-        'slidecarousel' => 'Slide Carousel',
+        'slide-carousel' => 'Slide Carousel',
         
    
 
     ),
     'default_value' => array(
-        0 => 'gallerycarousel',
+        0 => 'gallery-carousel',
     ),
     'allow_null' => 0,
     'multiple' => 0,
@@ -828,25 +828,7 @@ acf_add_local_field_group(array(
     'return_format' => 'value',
     'placeholder' => '',
     ),
-  array(
-        'key' => 'field_626dd35jfd03e216',
-        'label' => 'Section Heading',
-        'name' => 'section_heading',
-        'type' => 'text',
-        'instructions' => '',
-        'required' => 0,
-        'conditional_logic' => 0,
-        'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-        ),
-        'default_value' => '',
-        'placeholder' => '',
-        'prepend' => '',
-        'append' => '',
-        'maxlength' => '',
-    ),
+
 
     array(
     'key' => 'field_5d49aea9131e31',
@@ -871,61 +853,8 @@ acf_add_local_field_group(array(
     'other_choice' => 0,
     'save_other_choice' => 0,
     ),
-     array(
-            'key' => 'field_626ddjhp4413e2k19',
-            'label' => 'Section Image',
-            'name' => 'section_image',
-            'type' => 'image',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-        array(
-            'field' => 'field_5c3812a7a819bf1',
-            'operator' => '==',
-            'value' => 'slidecarousel',
-        ),
-    ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'return_format' => 'array',
-            'preview_size' => 'thumbnail',
-            'library' => 'all',
-            'min_width' => '',
-            'min_height' => '',
-            'min_size' => '',
-            'max_width' => '',
-            'max_height' => '',
-            'max_size' => '',
-            'mime_types' => '',
-        ),
-         array(
-        'key' => 'field_pdjdhqdliwisdsjd',
-        'label' => 'Image Position',
-        'name' => 'image_position',
-        'type' => 'true_false',
-        'instructions' => '',
-        'required' => 0,
-        'conditional_logic' => array(
-        array(
-            'field' => 'field_5c3812a7a819bf1',
-            'operator' => '==',
-            'value' => 'slidecarousel',
-        ),
-    ),
-        'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-        ),
-        'message' => '',
-        'ui' => 1,
-        'default_value' => 0,
-        'ui_on_text' => 'After Slide',
-        'ui_off_text' => 'Before Slide',
-         ), 
+    
+      
          array(
             'key' => 'field_5c812a7a8hgh19bf',
             'label' => 'People Group',
@@ -933,7 +862,13 @@ acf_add_local_field_group(array(
             'type' => 'select',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+        array(
+            'field' => 'field_5c3812a7a819bf1',
+            'operator' => '==',
+            'value' => 'people-carousel',
+        ),
+    ),
             'wrapper' => array(
                 'width' => '',
                 'class' => '',
@@ -964,7 +899,7 @@ acf_add_local_field_group(array(
         array(
             'field' => 'field_5c3812a7a819bf1',
             'operator' => '==',
-            'value' => 'gallerycarousel',
+            'value' => 'gallery-carousel',
         ),
     ),
     'wrapper' => array(
@@ -989,7 +924,7 @@ acf_add_local_field_group(array(
             array(
                 'field' => 'field_5c3812a7a819bf1',
                 'operator' => '==',
-                'value' => 'slidecarousel',
+                'value' => 'slide-carousel',
             ),
         ),
     ),
