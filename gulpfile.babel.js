@@ -4,9 +4,9 @@ import plugins from "gulp-load-plugins";
 import yargs from "yargs";
 import browser from "browser-sync";
 import gulp from "gulp";
-import rimraf from "rimraf";
-import yaml from "js-yaml";
 import fs from "fs";
+import yaml from "js-yaml";
+import rimraf from "rimraf"; // Consider replacing with fs.rmSync or del if necessary
 import webpackStream from "webpack-stream";
 import webpack2 from "webpack";
 import named from "vinyl-named";
@@ -21,9 +21,6 @@ const $ = plugins();
 
 // Check for --production flag
 const PRODUCTION = !!yargs.argv.production;
-
-// Check for --development flag unminified with sourcemaps
-const DEV = !!yargs.argv.dev;
 
 // Load settings from config.yml
 const {
@@ -49,66 +46,50 @@ function loadConfig() {
   log("Loading config file...");
 
   if (checkFileExists("config.yml")) {
-    // config.yml exists, load it
-    log(
-      colors.bold(colors.cyan("config.yml")),
-      "exists, loading",
-      colors.bold(colors.cyan("config.yml"))
-    );
+    log(colors.bold(colors.cyan("config.yml")), "exists, loading", colors.bold(colors.cyan("config.yml")));
     let ymlFile = fs.readFileSync("config.yml", "utf8");
     return yaml.load(ymlFile);
   } else if (checkFileExists("config-default.yml")) {
-    // config-default.yml exists, load it
-    log(
-      colors.bold(colors.cyan("config.yml")),
-      "does not exist, loading",
-      colors.bold(colors.cyan("config-default.yml"))
-    );
+    log(colors.bold(colors.cyan("config.yml")), "does not exist, loading", colors.bold(colors.cyan("config-default.yml")));
     let ymlFile = fs.readFileSync("config-default.yml", "utf8");
     return yaml.load(ymlFile);
   } else {
-    // Exit if config.yml & config-default.yml do not exist
     log("Exiting process, no config file exists.");
-    log("Error Code:", err.code);
     process.exit(1);
   }
 }
 
 // Delete the "dist" folder
-// This happens every time a build starts
 function clean(done) {
-  rimraf(PATHS.dist, done);
+  rimraf(PATHS.dist, done); // Consider using fs.rmSync or del for modern environments
 }
 
 // Copy files out of the assets folder
-// This task skips over the "images", "js", and "scss" folders, which are parsed separately
 function copy() {
   return gulp.src(PATHS.assets).pipe(gulp.dest(PATHS.dist + "/assets"));
 }
 
 // Compile Sass into CSS
-// In production, the CSS is compressed
 function styles() {
   return (
     gulp.src(['src/assets/scss/app.scss', 'src/assets/scss/editor.scss'])
     .pipe($.sourcemaps.init())
     .pipe(
-      sass
-      .sync({
-        includePaths: PATHS.sass,
-      }).on("error", sass.logError),
+      sass.sync({
+        includePaths: PATHS.sass
+      })
+      .on("error", sass.logError) // Improved error logging
     )
     .pipe($.autoprefixer())
-
     .pipe($.if(PRODUCTION, $.cleanCss({
       compatibility: "ie11"
     })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe($.if((REVISIONING && PRODUCTION) || (REVISIONING && DEV), $.rev()))
+    .pipe($.if((REVISIONING && PRODUCTION) || (REVISIONING && !!yargs.argv.dev), $.rev()))
     .pipe(gulp.dest(PATHS.dist + "/assets/css"))
     .pipe(
       $.if(
-        (REVISIONING && PRODUCTION) || (REVISIONING && DEV),
+        (REVISIONING && PRODUCTION) || (REVISIONING && !!yargs.argv.dev),
         $.rev.manifest()
       )
     )
@@ -120,32 +101,45 @@ function styles() {
 }
 exports.styles = styles;
 
-// Combine JavaScript into one file
-// In production, the file is minified
+// Webpack configuration with SCSS and CSS loaders added
 const webpack = {
   config: {
     module: {
       rules: [{
-        test: /.js$/,
-        loader: "babel-loader",
-        exclude: /node_modules(?![\\\/]foundation-sites)/,
-      }, ],
+          test: /\.js$/,
+          loader: "babel-loader",
+          exclude: /node_modules(?![\\\/]foundation-sites)/,
+        },
+        {
+          test: /\.scss$/,
+          use: ["style-loader", "css-loader", "sass-loader"], // SCSS loader
+        },
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"], // CSS loader
+        },
+      ],
     },
-    mode: "development",
+    mode: PRODUCTION ? "production" : "development", // Dynamic mode based on PRODUCTION flag
     externals: {
       jquery: "jQuery",
     },
   },
 
   changeHandler(err, stats) {
-    log(
-      "[webpack]",
-      stats.toString({
-        colors: true,
-      })
-    );
-
-    browser.reload();
+    if (err) {
+      log.error("[webpack:error]", err.toString({
+        colors: true
+      }));
+    } else {
+      log(
+        "[webpack]",
+        stats.toString({
+          colors: true,
+        })
+      );
+      browser.reload();
+    }
   },
 
   build() {
@@ -157,15 +151,15 @@ const webpack = {
         $.if(
           PRODUCTION,
           $.uglify().on("error", (e) => {
-            console.log(e);
+            log.error("[uglify:error]", e); // Improved error logging
           })
         )
       )
-      .pipe($.if((REVISIONING && PRODUCTION) || (REVISIONING && DEV), $.rev()))
+      .pipe($.if((REVISIONING && PRODUCTION) || (REVISIONING && !!yargs.argv.dev), $.rev()))
       .pipe(gulp.dest(PATHS.dist + "/assets/js"))
       .pipe(
         $.if(
-          (REVISIONING && PRODUCTION) || (REVISIONING && DEV),
+          (REVISIONING && PRODUCTION) || (REVISIONING && !!yargs.argv.dev),
           $.rev.manifest()
         )
       )
@@ -185,12 +179,9 @@ const webpack = {
         webpackStream(watchConfig, webpack2, webpack.changeHandler).on(
           "error",
           (err) => {
-            log(
-              "[webpack:error]",
-              err.toString({
-                colors: true,
-              })
-            );
+            log.error("[webpack:error]", err.toString({
+              colors: true
+            }));
           }
         )
       )
@@ -202,7 +193,6 @@ gulp.task("webpack:build", webpack.build);
 gulp.task("webpack:watch", webpack.watch);
 
 // Copy images to the "dist" folder
-// In production, the images are compressed
 function images() {
   return gulp
     .src("src/assets/images/**/*")
@@ -211,20 +201,22 @@ function images() {
         PRODUCTION,
         $.imagemin([
           $.imagemin.mozjpeg({
-            progressive: true,
+            progressive: true
           }),
           $.imagemin.optipng({
-            optimizationLevel: 5,
+            optimizationLevel: 5
           }),
           $.imagemin.gifsicle({
-            interlaced: true,
+            interlaced: true
           }),
           $.imagemin.svgo({
             plugins: [{
-              cleanupAttrs: true
-            }, {
-              removeComments: true
-            }],
+                cleanupAttrs: true
+              },
+              {
+                removeComments: true
+              }
+            ]
           }),
         ])
       )
@@ -232,54 +224,33 @@ function images() {
     .pipe(gulp.dest(PATHS.dist + "/assets/images"));
 }
 
-// Start BrowserSync to preview the site in
+// Start BrowserSync to preview the site
 function server(done) {
   browser.init({
     proxy: BROWSERSYNC.url,
-
     ui: {
-      port: 8080,
+      port: 8080
     },
   });
   done();
 }
 
-// Reload the browser with BrowserSync
+// Reload the browser
 function reload(done) {
   browser.reload();
   done();
 }
 
-// Watch for changes to static assets, pages, Sass, and JavaScript
+// Watch for changes
 function watch() {
   gulp.watch(PATHS.assets, copy);
-  gulp
-    .watch("src/assets/scss/**/*.scss", styles)
-    .on("change", (path) =>
-      log("File " + colors.bold(colors.magenta(path)) + " changed.")
-    )
-    .on("unlink", (path) =>
-      log("File " + colors.bold(colors.magenta(path)) + " was removed.")
-    );
-  gulp
-    .watch("**/*.php", reload)
-    .on("change", (path) =>
-      log("File " + colors.bold(colors.magenta(path)) + " changed.")
-    )
-    .on("unlink", (path) =>
-      log("File " + colors.bold(colors.magenta(path)) + " was removed.")
-    );
+  gulp.watch("src/assets/scss/**/*.scss", styles).on("change", (path) => log("File " + colors.bold(colors.magenta(path)) + " changed.")).on("unlink", (path) => log("File " + colors.bold(colors.magenta(path)) + " was removed."));
+  gulp.watch("**/*.php", reload).on("change", (path) => log("File " + colors.bold(colors.magenta(path)) + " changed.")).on("unlink", (path) => log("File " + colors.bold(colors.magenta(path)) + " was removed."));
   gulp.watch("src/assets/images/**/*", gulp.series(images, reload));
 }
 
 // Build the "dist" folder by running all of the below tasks
-gulp.task(
-  "build",
-  gulp.series(clean, gulp.parallel(styles, "webpack:build", images, copy))
-);
+gulp.task("build", gulp.series(clean, gulp.parallel(styles, "webpack:build", images, copy)));
 
 // Build the site, run the server, and watch for file changes
-gulp.task(
-  "default",
-  gulp.series("build", server, gulp.parallel("webpack:watch", watch))
-);
+gulp.task("default", gulp.series("build", server, gulp.parallel("webpack:watch", watch)));

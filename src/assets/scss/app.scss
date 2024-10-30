@@ -3,7 +3,9 @@
 @import 'foundation';
 @import 'settings';
 @import 'motion-ui';
-@import "node_modules/@splidejs/splide/dist/css/splide.min";
+@import "../../../node_modules/swiper/swiper-bundle.min.css";
+
+
 
 @include foundation-global-styles;
 //@include foundation-grid;

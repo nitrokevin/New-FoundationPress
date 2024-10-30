@@ -37,6 +37,7 @@ $left_content = get_field('left_content');
 $left_background = get_field('left_background');
 $left_overlay = get_field('left_overlay');
 $left_background_image = get_field('left_background_image');
+$slider_control_left = get_field('slider_control_left');
 if ($left_background_image) {;
 $left_small = $left_background_image['sizes']['fp-small'];
 $left_medium = $left_background_image['sizes']['fp-medium'];
@@ -46,6 +47,7 @@ $right_content = get_field('right_content');
 $right_background = get_field('right_background');
 $right_overlay = get_field('right_overlay');
 $right_background_image = get_field('right_background_image');
+$slider_control_right = get_field('slider_control_right');
 if ($right_background_image) {;
 $right_small = $right_background_image['sizes']['fp-small'];
 $right_medium = $right_background_image['sizes']['fp-medium'];
@@ -63,6 +65,13 @@ $counter++;
 			    	<div class="article-grid ">
 				    <div class="entry-content">
 					    <?php echo $left_content; ?>
+						
+							<?php if ($slider_control_left) {
+								echo '<div class="slide-carousel-container">';
+						 get_template_part( 'template-parts/content', 'slide-carousel' ); 
+						 echo '</div>';
+							} ?>
+						
 				    </div>
 				</div>
 				</div>
@@ -72,6 +81,11 @@ $counter++;
 			    	<div class="article-grid ">
 				    <div class="entry-content">
 					    <?php echo $right_content; ?>
+								<?php if ($slider_control_right) {
+										echo '<div class="slide-carousel">';
+						 get_template_part( 'template-parts/content', 'slide-carousel' ); 
+						  echo '</div>';
+							} ?>
 				    </div>
 				</div>
 				</div>
