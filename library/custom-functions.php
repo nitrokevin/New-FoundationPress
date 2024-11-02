@@ -145,3 +145,9 @@ function my_acf_google_map_api( $api ){
   $api['key'] = 'AIzaSyCf4nsA8K3CiVJXfztkpl2pmAfD5Dpq06E';
   return $api;	
   }
+
+  // Removes from admin menu
+add_action( 'admin_menu', 'my_remove_admin_menus' );
+function my_remove_admin_menus() {
+    remove_menu_page( 'edit-comments.php' );
+}
